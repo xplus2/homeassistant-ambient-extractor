@@ -1,0 +1,110 @@
+turn_on:
+  name: Turn on
+  description:
+    Set the light RGB and/or brightness based on the image provided by
+    URL or file path.
+  target:
+    entity:
+      domain: light
+  fields:
+    ambient_extract_url:
+      name: URL
+      description:
+        The URL of the image we want to extract RGB values and brightness from. 
+        Must be allowed in allowlist_external_urls.
+      example: https://www.example.com/images/logo.png
+      selector:
+        text:
+    ambient_extract_path:
+      name: Path
+      description:
+        The full system path to the image we want to extract RGB values and
+        brightness from.
+        Must be allowed in allowlist_external_dirs.
+      example: /opt/images/logo.png
+      selector:
+        text:
+    brightness_min:
+      name: Automatic brightness (minimal value)
+      description:
+        Auto Brightness lower boundary
+      example: 5
+      selector:
+        number:
+          min: 0
+          max: 255
+    brightness_max:
+      name: Automatic brightness (maximal value)
+      description:
+        Auto Brightness upper boundary
+      example: 25
+      selector:
+        number:
+          min: 0
+          max: 255
+    brightness_auto:
+      name: Auto Brightness on/off
+      description: Adjust Brightness according to the image.
+      example: True
+      selector:
+        boolean:
+    brightness_mode:
+      name: Brightness Mode
+      description: How to calculate brightness
+      example: natural
+      selector:
+        select:
+          options:
+            - mean
+            - rms
+            - natural
+            - dominant
+
+    crop_left:
+      name: Crop image, left offset
+      description: In % of the original width
+      example: 0
+      selector:
+        number:
+          min: 0
+          max: 99
+          step: 1
+          unit_of_measurement: %
+    crop_top:
+      name: Crop image, top offset
+      description: In % of the original height
+      example: 0
+      selector:
+        number:
+          min: 0
+          max: 99
+          step: 1
+          unit_of_measurement: %
+    crop_width:
+      name: Crop image, width
+      description: In % of the original width. 0 means full screen.
+      example: 0
+      selector:
+        number:
+          min: 0
+          max: 99
+          step: 1
+          unit_of_measurement: %
+    crop_height:
+      name: Crop image, height
+      description: In % of the original width. 0 means full screen.
+      example: 0
+      selector:
+        number:
+          min: 0
+          max: 99
+    color_temperature:
+      name: Color temperature
+      description: Apply a color temperature correction. Default = Off.
+      example: 6600
+      selector:
+        number:
+          min: 1000
+          max: 10000
+          step: 1
+          unit_of_measurement: K
